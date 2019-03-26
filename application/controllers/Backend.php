@@ -44,7 +44,7 @@ class Backend extends CI_Controller {
             }
             
 	}
-        public function dashboad()
+        public function dashboard()
         {
             if($this->ion_auth->logged_in())
             {

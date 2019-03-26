@@ -112,16 +112,16 @@
 
     <div class="row">
         <div class="box col-md-4">
-        <?php echo form_open_multipart('buyer/edit_buyer')?>
-        <h3>Edit Data Buyer</h3>
-        <input type="text" name="id" value="<?php echo $detail_buyer->id?>" hidden=""> 
-        <input type="text" name="iduser" value="<?php echo $detail_buyer->iduser?>" hidden=""> 
+        <?php echo form_open_multipart('siswa/edit_siswa')?>
+        <h3>Edit Data Siswa </h3>
+        <input type="text" name="id" value="<?php echo $detail_siswa->id?>" hidden=""> 
+        <input type="text" name="iduser" value="<?php echo $detail_siswa->iduser?>" hidden=""> 
         <table class="table table-hover">
             <tr>
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
-                      <input type="text" class="form-control" name="nama_pembeli" value="<?php echo $detail_buyer->nama_pembeli?>" placeholder="Nama Pembeli">  
+                      <input type="text" class="form-control" name="nama_siswa" value="<?php echo $detail_siswa->nama_siswa?>" placeholder="Nama Siswa">  
                     </div>
                 </td>
             </tr>
@@ -129,7 +129,7 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
-                      <input type="email" class="form-control" name="email" value="<?php echo $detail_buyer->email?>" placeholder="Email" autocomplete="off">  
+                      <input type="email" class="form-control" name="email_siswa" value="<?php echo $detail_siswa->email?>" placeholder="Email" autocomplete="off">  
                     </div>
                 </td>
             </tr>
@@ -137,7 +137,7 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-star blue"></i></span>
-                      <input type="password" class="form-control" name="password" value="<?php echo $detail_buyer->password?>"  placeholder="Password">  
+                      <input type="password" class="form-control" name="password" value="<?php echo $detail_siswa->password?>"  placeholder="Password">  
                     </div>
                 </td>
             </tr>
@@ -145,15 +145,7 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-phone blue"></i></span>
-                      <input type="text" class="form-control" name="no_hp" value="<?php echo $detail_buyer->no_hp?>" placeholder="Telpon/HP">  
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="input-group col-md-12">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-home blue"></i></span>
-                      <input type="text" class="form-control" name="alamat" value="<?php echo $detail_buyer->alamat?>" placeholder="Alamat Rumah">  
+                      <input type="text" class="form-control" name="no_hp" value="<?php echo $detail_siswa->no_hp?>" placeholder="Telpon/HP">  
                     </div>
                 </td>
             </tr>
@@ -161,7 +153,10 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-camera blue"></i></span>
-                      <input type="file" class="form-control" name="foto1"  placeholder="foto">  
+                      <select name="jenis_kelamin" id="selectError" data-rel="chosen" class="form-control">
+                            <option value="Laki-laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select> 
                     </div>
                 </td>
             </tr>
@@ -169,9 +164,9 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-tint blue"></i></span>
-                      <select name="asal_kota" id="selectError" data-rel="chosen" class="form-control">
-                          <?php foreach ($kota->result() as $t){?>
-                          <option value="<?php echo $t->id?>"><?php echo $t->nama_kota?></option>
+                      <select name="sekolah" id="selectError" data-rel="chosen" class="form-control">
+                          <?php foreach ($sekolah->result() as $t){?>
+                          <option value="<?php echo $t->sekolah?>"><?php echo $t->sekolah?></option>
                           <?php } ?>
                       </select>  
                     </div>
@@ -179,7 +174,7 @@
             </tr>
             <tr>
                 <td>
-                        <button type="submit" name="submit" class="button form-group btn-primary">Edit dan Simpan Data Pembeli</button>
+                        <button type="submit" name="submit" class="button form-group btn-primary">Edit dan Simpan Data Siswa</button>
                 </td>
             </tr>
         </table>

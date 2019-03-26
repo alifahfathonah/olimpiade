@@ -97,6 +97,14 @@
                       </select>
                     </div>
                     <div class="clearfix"></div><br>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th red"></i></span>
+                        <select name="jenis_kelamin" id="selectError" data-rel="chosen" class="form-control">
+                            <option value="Laki-laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div><br>
                     <p class="center col-md-5">
                         <button type="submit" name="login" class="btn btn-primary form-control">Register</button>
                     </p>

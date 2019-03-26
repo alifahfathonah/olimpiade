@@ -115,14 +115,14 @@
 
     <div class="row">
     <div class="box col-md-8">
-        <?php echo form_open_multipart('buyer/register')?>
-        <h3>Registrasi Pembeli Baru</h3>
+        <?php echo form_open_multipart('siswa/register')?>
+        <h3>Registrasi Siswa baru</h3>
         <table class="table table-hover">
             <tr>
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
-                      <input type="text" class="form-control" name="nama_pembeli" placeholder="Nama Customer" required>  
+                      <input type="text" class="form-control" name="nama_siswa" placeholder="Nama Siswa" required>  
                     </div>
                 </td>
             </tr>
@@ -130,7 +130,7 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
-                      <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off" required>  
+                      <input type="email" class="form-control" name="email_siswa" placeholder="Email" autocomplete="off" required>  
                     </div>
                 </td>
             </tr>
@@ -154,7 +154,12 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-home blue"></i></span>
-                      <input type="text" class="form-control" name="alamat"  placeholder="Alamat Rumah" required>  
+                      <select name="sekolah" id="selectError" data-rel="chosen" class="form-control">
+                          <option value="-">-Pilih Sekolah-</option>
+                          <?php foreach ($sekolah->result() as $t){?>
+                          <option value="<?php echo $t->id?>"><?php echo $t->sekolah?></option>
+                          <?php } ?>
+                      </select>
                     </div>
                 </td>
             </tr>
@@ -162,25 +167,16 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-camera blue"></i></span>
-                      <input type="file" class="form-control" name="foto"  placeholder="foto" required>  
+                      <select name="jenis_kelamin" id="selectError" data-rel="chosen" class="form-control">
+                            <option value="Laki-laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select> 
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div class="input-group col-md-12">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-tint blue"></i></span>
-                      <select name="asal_kota" id="selectError" data-rel="chosen" class="form-control">
-                          <?php foreach ($kota->result() as $t){?>
-                          <option value="<?php echo $t->id?>"><?php echo $t->nama_kota?></option>
-                          <?php } ?>
-                      </select>  
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                        <button type="submit" name="submit" class="button form-group btn-primary">Simpan Data Customer</button>
+                        <button type="submit" name="submit" class="button form-group btn-primary">Simpan Data Siswa</button>
                 </td>
             </tr>
         </table>
@@ -189,34 +185,30 @@
     </div><!--/row-->
     <div class="row">
         <div class="box col-md-8">
-        <h3>Seluruh Penjual Terdaftar</h3>
+        <h3>Seluruh Siswa Terdaftar</h3>
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
         <th>Nomer</th>
-        <th>Nama Customer</th>
-        <th>Alamat</th>
-        <th>Status Customer</th>
-        <th>Rating</th>
-        <th>Tanggal Daftar</th>
-        <th>Foto Customer</th>
+        <th>Nama Siswa</th>
+        <th>Jenis Kelamin</th>
+        <th>Asal Sekolah</th>
+        <th>Email</th>
         <th>Aksi</th>
     </tr>
     </thead>
     <tbody>
-        <?php $no=1; foreach ($buyer-> result() as $t){?>
+        <?php $no=1; foreach ($siswa-> result() as $t){?>
         <tr>
             <td><?php echo $no;?></td>
-            <td><?php echo $t->nama_pembeli;?></td>
-            <td><?php echo $t->alamat;?></td>
-            <td><?php echo $t->status_pembeli;?></td>
-            <td><?php echo $t->rating_pembeli;?></td>
-            <td><?php echo $t->tgl_input;?></td>
-            <td><img src="<?php echo base_url();?>img/<?php echo $t->foto?>" height="100" width="100"></td>
+            <td><?php echo $t->nama_siswa;?></td>
+            <td><?php echo $t->jenis_kelamin;?></td>
+            <td><?php echo $t->sekolah;?></td>
+            <td><?php echo $t->email;?></td>
             <td>
                 <?php if($grup->id=='1'){?>
-                    <a href="<?php echo base_url()?>index.php/buyer/edit_buyer/<?php echo $t->id?>" class="label label-warning">Edit</a>
-                    <a href="<?php echo base_url()?>index.php/buyer/hapus_buyer/<?php echo $t->id?>" class="label label-danger">Hapus</a>
+                    <a href="<?php echo base_url()?>index.php/siswa/edit_siswa/<?php echo $t->id?>" class="label label-warning">Edit</a>
+                    <a href="<?php echo base_url()?>index.php/siswa/hapus_siswa/<?php echo $t->id?>" class="label label-danger">Hapus</a>
                 <?php } ?>
             </td>
         </tr>

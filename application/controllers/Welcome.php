@@ -94,7 +94,7 @@ class Welcome extends CI_Controller {
                     {
                         $this->ion_auth->register($username,$password,$email,$additional_data,$group);
                         $this->M_siswa->register($data);
-                        redirect('siswa');
+                        redirect('backend');
                     }
                     else 
                     {

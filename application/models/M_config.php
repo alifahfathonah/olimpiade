@@ -60,7 +60,7 @@ class M_config extends CI_Model {
     {
         $sql="SELECT menu.nama_menu, menu.url, menu.simbol
                 FROM mapping_menu, menu
-                WHERE mapping_menu.menu = menu.nama_menu AND mapping_menu.`grup`='$id'";
+                WHERE mapping_menu.menu = menu.nama_menu AND mapping_menu.`grup`='$id' order by menu.nama_menu ASC";
         return $this->db->query($sql);
     }
     public function get_kota()

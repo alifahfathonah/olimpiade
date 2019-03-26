@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-     <meta charset="utf-8">
+   
+    <meta charset="utf-8">
     <title><?php echo $config->nama_aplikasi?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo $config->meta?>">
-    
     <!-- The styles -->
     <link href="<?php echo base_url()?>backend/css/bootstrap-cerulean.min.css" rel="stylesheet">
 
@@ -102,57 +101,215 @@
         </ul>
     </div>
 
-    
     <div class="row">
     <div class="box col-md-4">
-        <?php echo form_open('admin/tambah_sekolah')?>
-        <input type="text" name="id" value="<?php echo $config->id?>" placeholder="" hidden=""> 
-        <h3>Nama Sekolah</h3>
+        <?php echo form_open('admin/edit_konfig')?>
+        <input type="text" name="id" value="<?php echo $config->id?>" placeholder="Telpon" hidden=""> 
+        <h3>Konfigurasi Aplikasi</h3>
         <table class="table table-hover">
             <tr>
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-pencil blue"></i></span>
-                      <input type="text" class="form-control" name="sekolah" placeholder="Nama Sekolah">  
+                      <input type="text" class="form-control" name="nama_aplikasi" value="<?php echo $config->nama_aplikasi?>" placeholder="Nama Aplikasi">  
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button type="submit" name="tomb_sekolah" class="button form-group btn-primary">Simpan Data</button>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
+                      <input type="text" class="form-control" name="header" value="<?php echo $config->header?>" placeholder="Header Aplikasi">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-star blue"></i></span>
+                      <input type="text" class="form-control" name="footer" value="<?php echo $config->footer?>" placeholder="Footer Aplikasi">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-home blue"></i></span>
+                      <input type="text" class="form-control" name="telpon" value="<?php echo $config->telpon?>" placeholder="Telpon">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-camera blue"></i></span>
+                      <input type="text" class="form-control" name="alamat" value="<?php echo $config->alamat?>" placeholder="Alamat">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-tint blue"></i></span>
+                      <input type="text" class="form-control" name="meta" value="<?php echo $config->meta?>" placeholder="Meta Aplikasi">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" name="submit" class="button form-group btn-primary">Edit dan Simpan Konfigurasi</button>
                 </td>
             </tr>
         </table>
     </form>
     </div>
     <div class="box col-md-8">
-        <h3>Seluruh Sekolah Terdaftar</h3>
+        <h3>Seluruh Menu Aplikasi</h3>
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
         <th>Nomer</th>
-        <th>Nama Sekolah</th>
+        <th>Nama Menu</th>
+        <th>URL</th>
+        <th>Simbol</th>
         <th>Tanggal Input</th>
         <th>Email</th>
         <th>Aksi</th>
     </tr>
     </thead>
     <tbody>
-        <?php $no=1; foreach ($sekolah->result() as $t){?>
+        <?php $no=1; foreach ($menu_all-> result() as $t){?>
         <tr>
-            <td><?php echo $no?></td>
-            <td><?php echo $t->sekolah?></td>
-            <td><?php echo $t->tgl_input?></td>
-            <td><?php echo $t->email?></td>
-            <td><a href="<?php echo base_url()?>index.php/admin/hapus_kategori/<?php echo $t->id?>" class="label label-danger">Hapus</a></td>
+            <td><?php echo $no;?></td>
+            <td><?php echo $t->nama_menu;?></td>
+            <td><?php echo $t->url;?></td>
+            <td><?php echo $t->simbol;?></td>
+            <td><?php echo $t->tgl_input;?></td>
+            <td><?php echo $t->email;?></td>
+            <td>
+                <?php if($grup->id=='1'){?>
+                    <a href="<?php echo base_url()?>index.php/admin/edit_menu/<?php echo $t->id?>" class="label label-warning">Edit</a>
+                    <a href="<?php echo base_url()?>index.php/admin/hapus_menu/<?php echo $t->id?>" class="label label-danger">Hapus</a>
+                <?php } ?>
+            </td>
         </tr>
-        <?php $no++;}?>
+        <?php $no++;} ?>
     </tbody>
     </table>
     </div>
     <!--/span-->
 
     </div><!--/row-->
+    <div class="row">
+        <div class="box col-md-4">
+        <?php echo form_open('admin/buat_menu')?>
+        <h3>Membuat Menu</h3>
+        <table class="table table-hover">
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil blue"></i></span>
+                      <input type="text" class="form-control" name="nama_menu" placeholder="Nama Menu">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
+                      <input type="text" class="form-control" name="url" placeholder="URL">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-star blue"></i></span>
+                      <input type="text" class="form-control" name="simbol"  placeholder="Simbol">  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" name="simpan_menu" class="button form-group btn-success">Simpan Menu</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+        <div class="box col-md-3">
+        <?php echo form_open('admin/mapping_menu')?>
+        <h3>Mapping Menu</h3>
+        <table class="table table-hover">
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-pencil blue"></i></span>
+                      <select name="menu" id="selectError" data-rel="chosen" class="form-control">
+                          <?php foreach ($menu_all->result() as $t){?>
+                          <option value="<?php echo $t->nama_menu?>"><?php echo $t->nama_menu?></option>
+                          <?php } ?>
+                      </select> 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle blue"></i></span>
+                      <select name="group" id="selectError" data-rel="chosen" class="form-control">
+                          <?php foreach ($user_group->result() as $t){?>
+                          <option value="<?php echo $t->name?>"><?php echo $t->name?></option>
+                          <?php } ?>
+                      </select> 
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" name="mapping_menu" class="button form-group btn-success">Simpan Menu</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <div class="box col-md-5">
+        <?php echo form_open('admin/mapping_menu')?>
+        <h3>Tabel Mapping Menu</h3>
+        <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <thead>
+    <tr>
+        <th>Nomer</th>
+        <th>Nama Menu</th>
+        <th>Grup</th>
+        <th>Tanggal Buat</th>
+        <th>Pembuat</th>
+        <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php $no=1; foreach ($mapping_menu-> result() as $t){?>
+        <tr>
+            <td><?php echo $no;?></td>
+            <td><?php echo $t->menu;?></td>
+            <td><?php echo $t->grup;?></td>
+            <td><?php echo $t->tgl_input;?></td>
+            <td><?php echo $t->email;?></td>
+            <td>
+                <?php if($grup->id=='1'){?>
+                    <a href="<?php echo base_url()?>index.php/admin/delete_mapping/<?php echo $t->id?>" class="label label-danger">Hapus</a>
+                <?php } ?>
+            </td>
+        </tr>
+        <?php $no++;} ?>
+    </tbody>
+    </table>
+    </form>
+    </div>
+    </div>
+
+     
+
     <!-- content ends -->
     </div><!--/#content.col-md-0-->
 </div><!--/fluid-row-->
