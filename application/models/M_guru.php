@@ -11,25 +11,25 @@
  *
  * @author SONY
  */
-class M_seller extends CI_Model {
+class M_guru extends CI_Model {
     //put your code here
     public function register($data)
     {
-        $this->db->insert('seller',$data);
+        $this->db->insert('guru',$data);
     }
-    public function get_seller()
+    public function get_guru()
     {
-        $sql="select * from seller";
+        $sql="select * from guru";
         return $this->db->query($sql);
     }
-    public function get_idseller($id)
+    public function get_idguru($id)
     {
-        $sql="select seller.*,users.id as iduser from seller, users where seller.email=users.email and seller.id=$id";
+        $sql="select guru.*,users.id as iduser from guru, users where guru.email=users.email and guru.id=$id";
         return $this->db->query($sql);
     }
-    public function delete_seller($id)
+    public function delete_guru($id)
     {
         $this->db->where('id',$id);
-        $this->db->delete('seller');
+        $this->db->delete('guru');
     }
 }

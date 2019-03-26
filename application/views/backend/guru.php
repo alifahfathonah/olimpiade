@@ -15,12 +15,9 @@
         http://twitter.com/halalit_usman
         ===
     -->
-    <meta charset="utf-8">
     <title><?php echo $config->nama_aplikasi?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo $config->meta?>">
-    
-
     <!-- The styles -->
     <link href="<?php echo base_url()?>backend/css/bootstrap-cerulean.min.css" rel="stylesheet">
 
@@ -102,26 +99,30 @@
         <!--/span-->
         <!-- left menu ends -->
 
-        
-
+       
         <div id="content" class="col-lg-10 col-sm-10">
             <!-- content starts -->
                 <div>
-        
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Tables</a>
+            </li>
+        </ul>
     </div>
 
     <div class="row">
-        <div class="box col-md-4">
-        <?php echo form_open_multipart('siswa/edit_siswa')?>
-        <h3>Edit Data Siswa </h3>
-        <input type="text" name="id" value="<?php echo $detail_siswa->id?>" hidden=""> 
-        <input type="text" name="iduser" value="<?php echo $detail_siswa->iduser?>" hidden=""> 
+    <div class="box col-md-8">
+        <?php echo form_open_multipart('guru/register')?>
+        <h3>Registrasi Guru baru</h3>
         <table class="table table-hover">
             <tr>
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user blue"></i></span>
-                      <input type="text" class="form-control" name="nama_siswa" value="<?php echo $detail_siswa->nama_siswa?>" placeholder="Nama Siswa">  
+                      <input type="text" class="form-control" name="nama_guru" placeholder="Nama Guru" required>  
                     </div>
                 </td>
             </tr>
@@ -129,7 +130,15 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
-                      <input type="email" class="form-control" name="email_siswa" value="<?php echo $detail_siswa->email?>" placeholder="Email" autocomplete="off">  
+                      <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir"  required>  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
+                      <input type="email" class="form-control" name="email_guru" placeholder="Email" autocomplete="off" required>  
                     </div>
                 </td>
             </tr>
@@ -137,7 +146,7 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-star blue"></i></span>
-                      <input type="password" class="form-control" name="password" value="<?php echo $detail_siswa->password?>"  placeholder="Password">  
+                      <input type="password" class="form-control" name="password"  placeholder="Password" required>  
                     </div>
                 </td>
             </tr>
@@ -145,15 +154,20 @@
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-phone blue"></i></span>
-                      <input type="text" class="form-control" name="no_hp" value="<?php echo $detail_siswa->no_hp?>" placeholder="Telpon/HP">  
+                      <input type="text" class="form-control" name="no_hp"  placeholder="Telpon/HP" required>  
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="input-group col-md-12">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
-                      <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" value="<?php echo $detail_siswa->tgl_lahir?>" required>  
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-home blue"></i></span>
+                      <select name="sekolah" id="selectError" data-rel="chosen" class="form-control">
+                          <option value="-">-Pilih Sekolah-</option>
+                          <?php foreach ($sekolah->result() as $t){?>
+                          <option value="<?php echo $t->id?>"><?php echo $t->sekolah?></option>
+                          <?php } ?>
+                      </select>
                     </div>
                 </td>
             </tr>
@@ -170,31 +184,56 @@
             </tr>
             <tr>
                 <td>
-                    <div class="input-group col-md-12">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-tint blue"></i></span>
-                      <select name="sekolah" id="selectError" data-rel="chosen" class="form-control">
-                          <?php foreach ($sekolah->result() as $t){?>
-                          <option value="<?php echo $t->sekolah?>"><?php echo $t->sekolah?></option>
-                          <?php } ?>
-                      </select>  
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                        <button type="submit" name="submit" class="button form-group btn-primary">Edit dan Simpan Data Siswa</button>
+                        <button type="submit" name="submit" class="button form-group btn-primary">Simpan Data Guru</button>
                 </td>
             </tr>
         </table>
     </form>
     </div>
     </div><!--/row-->
-    
+    <div class="row">
+        <div class="box col-md-8">
+        <h3>Seluruh Guru Terdaftar</h3>
+    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <thead>
+    <tr>
+        <th>Nomer</th>
+        <th>Nama Guru</th>
+        <th>Jenis Kelamin</th>
+        <th>Asal Sekolah</th>
+        <th>Email</th>
+        <th>Aksi</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php $no=1; foreach ($guru-> result() as $t){?>
+        <tr>
+            <td><?php echo $no;?></td>
+            <td><?php echo $t->nama_guru;?></td>
+            <td><?php echo $t->jenis_kelamin;?></td>
+            <td><?php echo $t->sekolah;?></td>
+            <td><?php echo $t->email;?></td>
+            <td>
+                <?php if($grup->id=='1'){?>
+                    <a href="<?php echo base_url()?>index.php/guru/edit_guru/<?php echo $t->id?>" class="label label-warning">Edit</a>
+                    <a href="<?php echo base_url()?>index.php/guru/hapus_guru/<?php echo $t->id?>" class="label label-danger">Hapus</a>
+                <?php } ?>
+            </td>
+        </tr>
+        <?php $no++;} ?>
+    </tbody>
+    </table>
+    </div>
+    </div>
+
     <!-- content ends -->
     </div><!--/#content.col-md-0-->
 </div><!--/fluid-row-->
 
-    
+    <!-- Ad, you can remove it -->
+    <div class="row">
+        
+    </div>
     <!-- Ad ends -->
 
     <hr>

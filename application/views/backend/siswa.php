@@ -153,6 +153,14 @@
             <tr>
                 <td>
                     <div class="input-group col-md-12">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar blue"></i></span>
+                      <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir"  required>  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-home blue"></i></span>
                       <select name="sekolah" id="selectError" data-rel="chosen" class="form-control">
                           <option value="-">-Pilih Sekolah-</option>
