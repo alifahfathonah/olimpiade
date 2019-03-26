@@ -68,9 +68,9 @@ class M_config extends CI_Model {
         $sql="select * from m_kota";
         return $this->db->query($sql);
     }
-    public function get_kategori()
+    public function get_sekolah()
     {
-        $sql="select * from m_kategori";
+        $sql="select * from m_sekolah";
         return $this->db->query($sql);
     }
     public function get_kurir()
@@ -112,9 +112,9 @@ class M_config extends CI_Model {
         $this->db->where('id',$id);
         $this->db->delete('mapping_kurir');
     }
-     public function tambah_kategori($data)
+     public function tambah_sekolah($data)
     {
-        $this->db->insert('m_kategori',$data);
+        $this->db->insert('m_sekolah',$data);
     }
     public function delete_kategori($id)
     {

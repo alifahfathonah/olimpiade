@@ -298,43 +298,43 @@
     </div>
     <div class="row">
     <div class="box col-md-4">
-        <?php echo form_open('admin/tambah_kategori')?>
-        <input type="text" name="id" value="<?php echo $config->id?>" placeholder="Telpon" hidden=""> 
-        <h3>Kategori Barang</h3>
+        <?php echo form_open('admin/tambah_sekolah')?>
+        <input type="text" name="id" value="<?php echo $config->id?>" placeholder="" hidden=""> 
+        <h3>Nama Sekolah</h3>
         <table class="table table-hover">
             <tr>
                 <td>
                     <div class="input-group col-md-12">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-pencil blue"></i></span>
-                      <input type="text" class="form-control" name="kategori" placeholder="kategori Barang">  
+                      <input type="text" class="form-control" name="sekolah" placeholder="Nama Sekolah">  
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <button type="submit" name="kurir" class="button form-group btn-primary">Simpan Kategori</button>
+                    <button type="submit" name="tomb_sekolah" class="button form-group btn-primary">Simpan Data</button>
                 </td>
             </tr>
         </table>
     </form>
     </div>
     <div class="box col-md-8">
-        <h3>Seluruh Kategori Barang</h3>
+        <h3>Seluruh Sekolah Terdaftar</h3>
     <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
     <thead>
     <tr>
         <th>Nomer</th>
-        <th>kategori Barang</th>
+        <th>Nama Sekolah</th>
         <th>Tanggal Input</th>
         <th>Email</th>
         <th>Aksi</th>
     </tr>
     </thead>
     <tbody>
-        <?php $no=1; foreach ($kategori->result() as $t){?>
+        <?php $no=1; foreach ($sekolah->result() as $t){?>
         <tr>
             <td><?php echo $no?></td>
-            <td><?php echo $t->kategori?></td>
+            <td><?php echo $t->sekolah?></td>
             <td><?php echo $t->tgl_input?></td>
             <td><?php echo $t->email?></td>
             <td><a href="<?php echo base_url()?>index.php/admin/hapus_kategori/<?php echo $t->id?>" class="label label-danger">Hapus</a></td>

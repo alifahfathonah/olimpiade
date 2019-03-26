@@ -150,7 +150,7 @@ class Admin extends CI_Controller {
                     $data['config']= $this->M_config->get_all()->row();
                     $data['kota']= $this->M_config->get_kota();
                     $data['kurir']= $this->M_config->get_kurir();
-                    $data['kurir']= $this->M_config->get_kategori();
+                    $data['sekolah']= $this->M_config->get_sekolah();
                     $data['mapping_kurir']= $this->M_config->get_mapping();
                     $data['menu_all']= $this->M_config->get_all_menu();
                     $this->load->view('backend/konfigurasi_pengiriman',$data);
@@ -235,18 +235,18 @@ class Admin extends CI_Controller {
             redirect('admin/konfigurasi_pengiriman');
         }
     }
-    public function tambah_kategori()
+    public function tambah_sekolah()
         {
             if($this->ion_auth->logged_in())
             {
-                if(isset($_POST['mapping']))
+                if(isset($_POST['tomb_sekolah']))
                 {
                     $users = $this->ion_auth->user()->row();
                     $data = array(
-                        'kategori'=>$this->input->post('kategori'),
+                        'sekolah'=>$this->input->post('sekolah'),
                         'tgl_input'=> date('Y-m-d H:i:s'),
                         'email'=>$users->email);
-                    $this->M_config->tambah_mapping($data);
+                    $this->M_config->tambah_sekolah($data);
                     redirect('admin/konfigurasi_pengiriman');
                 }   
             }

@@ -11,11 +11,11 @@
  *
  * @author SONY
  */
-class Buyer extends CI_Controller {
+class Siswa extends CI_Controller {
     //put your code here
     public function __construct() {
         parent::__construct();
-        $this->load->model('M_buyer');
+        $this->load->model('M_siswa');
         $this->load->model('M_config');
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
         $this->lang->load('auth');
@@ -32,7 +32,7 @@ class Buyer extends CI_Controller {
                 $data['mapping_menu']= $this->M_config->get_mapping_menu();
                 $data['grup'] = $this->ion_auth->get_users_groups($users->id)->row();
                 $data['kota']= $this->M_config->get_kota();
-                $data['buyer']= $this->M_buyer->get_buyer();
+                $data['siswa']= $this->M_siswa->get_siswa();
                 $data['config']= $this->M_config->get_all()->row();
                 $this->load->view('backend/buyer',$data);
         }
@@ -86,12 +86,12 @@ class Buyer extends CI_Controller {
                 if(!$this->ion_auth->email_check($email))
                 {
                     $this->ion_auth->register($username,$password,$email,$additional_data,$group);
-                    $this->M_buyer->register($data);
-                    redirect('buyer');
+                    $this->M_siswa->register($data);
+                    redirect('backend/dashboard');
                 }
                 else 
                 {
-                    redirect('buyer');
+                    redirect('siswa');
                 }
             }
             
@@ -101,18 +101,18 @@ class Buyer extends CI_Controller {
             $this->load->view('front/register');
         }
     }
-    public function hapus_buyer()
+    public function hapus_siswa()
     {
         if($this->ion_auth->logged_in())
         {
             $id=  $this->uri->segment(3);
-            $akun = $this->M_buyer->get_idbuyer($id)->row();
+            $akun = $this->M_siswa->get_idbuyer($id)->row();
             $this->ion_auth->delete_user($akun->iduser);
-            $this->M_buyer->delete_buyer($id);
-            redirect('buyer');
+            $this->M_siswa->delete_buyer($id);
+            redirect('siswa');
         }
     }
-    public function edit_buyer()
+    public function edit_siswa()
     {
         if($this->ion_auth->logged_in())
         {

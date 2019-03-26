@@ -11,25 +11,25 @@
  *
  * @author SONY
  */
-class M_buyer extends CI_Model {
+class M_siswa extends CI_Model {
     //put your code here
     public function register($data)
     {
-        $this->db->insert('buyer',$data);
+        $this->db->insert('siswa',$data);
     }
-    public function get_buyer()
+    public function get_siswa()
     {
-        $sql="select * from buyer";
+        $sql="select * from siswa";
         return $this->db->query($sql);
     }
-    public function get_idbuyer($id)
+    public function get_idsiswa($id)
     {
-        $sql="select buyer.*,users.id as iduser from buyer, users where buyer.email=users.email and buyer.id=$id";
+        $sql="select siswa.*,users.id as iduser from siswa, users where siswa.email=users.email and siswa.id=$id";
         return $this->db->query($sql);
     }
     public function delete_buyer($id)
     {
         $this->db->where('id',$id);
-        $this->db->delete('buyer');
+        $this->db->delete('siswa');
     }
 }

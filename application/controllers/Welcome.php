@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
         public function __construct() {
             parent::__construct();
             $this->load->model('M_config');
+            $this->load->model('M_siswa');
             $this->load->database();
             $this->load->library(array('ion_auth', 'form_validation'));
             $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
@@ -50,6 +51,7 @@ class Welcome extends CI_Controller {
                 }
                 else 
                 {
+                   $data['sekolah']= $this->M_config->get_sekolah();
                    $data['config']= $this->M_config->get_all()->row();
                    $this->load->view('backend/login',$data);  
                 }
@@ -57,9 +59,48 @@ class Welcome extends CI_Controller {
             }
             else
             {
+               $data['sekolah']= $this->M_config->get_sekolah();
                $data['config']= $this->M_config->get_all()->row();
                $this->load->view('backend/login',$data); 
             }
             
 	}
+        public function register()
+        {
+            if(isset($_POST['login']))
+            {
+                $username = $this->input->post('nama_siswa');
+                $email = $this->input->post('email_siswa');
+                $password = $this->input->post('password');
+                $no_hp = $this->input->post('no_hp');
+                $company = $this->input->post('sekolah');
+                $group = array('3');
+                $additional_data = array(
+                    'first_name'=> $this->input->post('nama_siswa'),
+                    'company'   => $company,
+                    'phone'     => $no_hp
+                );
+                
+                    $data = array(
+                            'email'=> $this->input->post('email_siswa'),
+                            'tgl_lahir'=> $this->input->post('tgl_lahir'),
+                            'no_hp'=> $this->input->post('no_hp'),
+                            'nama_siswa'=> $this->input->post('nama_siswa'),
+                            'sekolah'=> $this->input->post('sekolah'),
+                            'password'=> $this->input->post('password'),
+                            'tgl_input'=> date('Y-m-d H:i:s'),
+                        );
+                    if(!$this->ion_auth->email_check($email))
+                    {
+                        $this->ion_auth->register($username,$password,$email,$additional_data,$group);
+                        $this->M_siswa->register($data);
+                        redirect('siswa');
+                    }
+                    else 
+                    {
+                        $this->load->view('backend/emailterdaftar');
+                    }
+                }
+            }
+        
 }
