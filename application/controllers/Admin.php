@@ -148,8 +148,6 @@ class Admin extends CI_Controller {
                     $grup = $this->ion_auth->get_users_groups($users->id)->row();
                     $data['menu_samping']= $this->M_config->menu_samping($grup->name);
                     $data['config']= $this->M_config->get_all()->row();
-                    $data['kota']= $this->M_config->get_kota();
-                    $data['kurir']= $this->M_config->get_kurir();
                     $data['sekolah']= $this->M_config->get_sekolah();
                     $data['mapping_kurir']= $this->M_config->get_mapping();
                     $data['menu_all']= $this->M_config->get_all_menu();
@@ -157,75 +155,9 @@ class Admin extends CI_Controller {
                 
             }
         }
-        public function tambah_kota()
-        {
-            if($this->ion_auth->logged_in())
-            {
-                if(isset($_POST['kota']))
-                {
-                    $users = $this->ion_auth->user()->row();
-                    $data = array(
-                        'nama_kota'=>$this->input->post('nama_kota'),
-                        'tgl_input'=> date('Y-m-d H:i:s'),
-                        'email'=>$users->email);
-                    $this->M_config->tambah_kota($data);
-                    redirect('admin/konfigurasi_pengiriman');
-                }   
-            }
-        }
-        public function tambah_kurir()
-        {
-            if($this->ion_auth->logged_in())
-            {
-                if(isset($_POST['kurir']))
-                {
-                    $users = $this->ion_auth->user()->row();
-                    $data = array(
-                        'nama_kurir'=>$this->input->post('nama_kurir'),
-                        'tgl_input'=> date('Y-m-d H:i:s'),
-                        'email'=>$users->email);
-                    $this->M_config->tambah_kurir($data);
-                    redirect('admin/konfigurasi_pengiriman');
-                }   
-            }
-        }
-        public function tambah_mapping()
-        {
-            if($this->ion_auth->logged_in())
-            {
-                if(isset($_POST['mapping']))
-                {
-                    $users = $this->ion_auth->user()->row();
-                    $data = array(
-                        'asal'=>$this->input->post('asal'),
-                        'tujuan'=>$this->input->post('tujuan'),
-                        'kurir'=>$this->input->post('kurir'),
-                        'ongkir'=> $this->input->post('ongkir'),
-                        'tgl_input'=> date('Y-m-d H:i:s'),
-                        'email'=>$users->email);
-                    $this->M_config->tambah_mapping($data);
-                    redirect('admin/konfigurasi_pengiriman');
-                }   
-            }
-        }
-    public function hapus_kota()
-    {
-        if($this->ion_auth->logged_in())
-        {
-            $id=  $this->uri->segment(3);
-            $this->M_config->delete_kota($id);
-            redirect('admin/konfigurasi_pengiriman');
-        }
-    }
-    public function hapus_kurir()
-    {
-        if($this->ion_auth->logged_in())
-        {
-            $id=  $this->uri->segment(3);
-            $this->M_config->delete_kurir($id);
-            redirect('admin/konfigurasi_pengiriman');
-        }
-    }
+        
+        
+    
     public function hapus_maping()
     {
         if($this->ion_auth->logged_in())
@@ -251,14 +183,6 @@ class Admin extends CI_Controller {
                 }   
             }
         }
-    public function hapus_kategori()
-    {
-        if($this->ion_auth->logged_in())
-        {
-            $id=  $this->uri->segment(3);
-            $this->M_config->delete_kategori($id);
-            redirect('admin/konfigurasi_pengiriman');
-        }
-    }
+    
         
 }

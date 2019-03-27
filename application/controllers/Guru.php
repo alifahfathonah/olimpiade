@@ -31,7 +31,6 @@ class Guru extends CI_Controller {
                 $data['user_group']= $this->M_config->get_user_grup();
                 $data['mapping_menu']= $this->M_config->get_mapping_menu();
                 $data['grup'] = $this->ion_auth->get_users_groups($users->id)->row();
-                $data['kota']= $this->M_config->get_kota();
                 $data['guru']= $this->M_guru->get_guru();
                 $data['sekolah']= $this->M_config->get_sekolah();
                 $data['config']= $this->M_config->get_all()->row();

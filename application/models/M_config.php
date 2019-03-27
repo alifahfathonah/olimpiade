@@ -63,11 +63,7 @@ class M_config extends CI_Model {
                 WHERE mapping_menu.menu = menu.nama_menu AND mapping_menu.`grup`='$id' order by menu.nama_menu ASC";
         return $this->db->query($sql);
     }
-    public function get_kota()
-    {
-        $sql="select * from m_kota";
-        return $this->db->query($sql);
-    }
+    
     public function get_sekolah()
     {
         $sql="select * from m_sekolah";
@@ -80,15 +76,10 @@ class M_config extends CI_Model {
     }
     public function get_mapping()
     {
-        $sql="SELECT m_kota.nama_kota as asal, view_kota.nama_kota as tujuan,m_kurir.nama_kurir, mapping_kurir.ongkir,mapping_kurir.email,mapping_kurir.tgl_input,mapping_kurir.id 
-              FROM m_kota,m_kurir,mapping_kurir,view_kota
-              WHERE m_kota.id=mapping_kurir.asal and view_kota.id=mapping_kurir.tujuan AND m_kurir.id=mapping_kurir.kurir";
+        $sql="select * from m_sekolah";
         return $this->db->query($sql);
     }
-    public function tambah_kota($data)
-    {
-        $this->db->insert('m_kota',$data);
-    }
+    
     public function tambah_kurir($data)
     {
         $this->db->insert('m_kurir',$data);
@@ -97,11 +88,7 @@ class M_config extends CI_Model {
     {
         $this->db->insert('mapping_kurir',$data);
     }
-    public function delete_kota($id)
-    {
-        $this->db->where('id',$id);
-        $this->db->delete('m_kota');
-    }
+    
     public function delete_kurir($id)
     {
         $this->db->where('id',$id);

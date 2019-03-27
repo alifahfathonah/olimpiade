@@ -214,10 +214,10 @@
             <td><?php echo $t->sekolah;?></td>
             <td><?php echo $t->email;?></td>
             <td>
-                <?php if($grup->id=='1'){?>
+                
                     <a href="<?php echo base_url()?>index.php/siswa/edit_siswa/<?php echo $t->id?>" class="label label-warning">Edit</a>
                     <a href="<?php echo base_url()?>index.php/siswa/hapus_siswa/<?php echo $t->id?>" class="label label-danger">Hapus</a>
-                <?php } ?>
+                
             </td>
         </tr>
         <?php $no++;} ?>
