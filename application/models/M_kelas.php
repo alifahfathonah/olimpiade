@@ -22,6 +22,11 @@ class M_kelas extends CI_Model {
         $sql="select * from kelas";
         return $this->db->query($sql);
     }
+    public function get_kelas_pembuat($id)
+    {
+        $sql="select * from kelas where kelas.email='$id'";
+        return $this->db->query($sql);
+    }
     
     public function delete_kelas($id)
     {
