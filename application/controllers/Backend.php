@@ -48,8 +48,16 @@ class Backend extends CI_Controller {
         {
             if($this->ion_auth->logged_in())
             {
+                $users = $this->ion_auth->user()->row();
+                $grup = $this->ion_auth->get_users_groups($users->id)->row();
+                $data['user'] = $this->ion_auth->user()->row();
+                $data['menu_samping']= $this->M_config->menu_samping($grup->name);
+                $data['user_group']= $this->M_config->get_user_grup();
+                $data['mapping_menu']= $this->M_config->get_mapping_menu();
+                $data['grup'] = $this->ion_auth->get_users_groups($users->id)->row();
+                $data['menu_all']= $this->M_config->get_all_menu();
                 $data['config']= $this->M_config->get_all()->row();
-                $this->load->view('backend/dashboard1',$data);
+                $this->load->view('backend/welcome',$data);
             }
             
         }

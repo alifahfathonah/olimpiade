@@ -48,7 +48,7 @@ class Guru extends CI_Controller {
                 $password = $this->input->post('password');
                 $no_hp = $this->input->post('no_hp');
                 $company = $this->input->post('sekolah');
-                $group = array('2');
+                $group = array('3');
                 $additional_data = array(
                     'first_name'=> $this->input->post('nama_guru'),
                     'company'   => $company,
