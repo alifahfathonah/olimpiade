@@ -89,7 +89,7 @@ class Guru extends CI_Controller {
             $id=  $this->uri->segment(3);
             $akun = $this->M_guru->get_idguru($id)->row();
             $this->ion_auth->delete_user($akun->iduser);
-            $this->M_guru->delete_buyer($id);
+            $this->M_guru->delete_guru($id);
             redirect('guru');
         }
     }
