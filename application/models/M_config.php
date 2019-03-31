@@ -103,9 +103,9 @@ class M_config extends CI_Model {
     {
         $this->db->insert('m_sekolah',$data);
     }
-    public function delete_kategori($id)
+    public function delete_sekolah($id)
     {
         $this->db->where('id',$id);
-        $this->db->delete('m_kategori');
+        $this->db->delete('m_sekolah');
     }
 }

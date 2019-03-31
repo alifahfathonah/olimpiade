@@ -144,7 +144,7 @@
             <td><?php echo $t->sekolah?></td>
             <td><?php echo $t->tgl_input?></td>
             <td><?php echo $t->email?></td>
-            <td><a href="<?php echo base_url()?>index.php/admin/hapus_kategori/<?php echo $t->id?>" class="label label-danger">Hapus</a></td>
+            <td><a href="<?php echo base_url()?>index.php/admin/hapus_sekolah/<?php echo $t->id?>" class="label label-danger">Hapus</a></td>
         </tr>
         <?php $no++;}?>
     </tbody>

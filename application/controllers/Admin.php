@@ -156,7 +156,15 @@ class Admin extends CI_Controller {
             }
         }
         
-        
+    public function hapus_sekolah()
+    {
+        if($this->ion_auth->logged_in())
+        {
+            $id=  $this->uri->segment(3);
+            $this->M_config->delete_sekolah($id);
+            redirect('admin/konfigurasi_pengiriman');
+        }
+    }   
     
     public function hapus_maping()
     {
