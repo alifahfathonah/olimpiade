@@ -39,14 +39,7 @@ class Welcome extends CI_Controller {
                 if($this->ion_auth->login($email,$password)==TRUE)
                 {
                     $this->ion_auth->clear_login_attempts($email);
-                    if($this->ion_auth->is_admin())
-                    {
-                        redirect('backend');
-                    }
-                    else 
-                    {
-                       redirect('backend/dashboard'); 
-                    }
+                    redirect('backend');
                     
                 }
                 else 
